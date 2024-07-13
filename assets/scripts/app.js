@@ -1,12 +1,22 @@
+class Product{
+  title='DEFAULT';
+  imageUrl;
+  defination;
+  price;
+
+  constructor(title,imag,desc,price){
+    this.title=title;
+    this.imageUrl=imag;
+    this.defination=desc;
+    this.price=price;
+  };
+}
+
+
 const productList = {
   products: [
-    {
-      title: "pillow",
-      imageUrl: 'https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg',
-      price: 19.99,
-      defination: "a soft pillow!",
-    },
-    { title: "carpet", imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ardabil_Carpet.jpg/397px-Ardabil_Carpet.jpg', price: 89.99, defination: "a carpet!" },
+    new Product("pillow",'https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg',"a soft pillow!",19.99),
+    new Product("carpet",'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ardabil_Carpet.jpg/397px-Ardabil_Carpet.jpg',"a carpet!",89.99)
   ],
   //render: function () {}
   render() {
@@ -31,7 +41,7 @@ const productList = {
       prodList.append(prodEl);
       renderHook.append(prodList);
 
-      
+      //prodEl.textContent = prod;
     }
   },
 };
