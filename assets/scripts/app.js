@@ -12,6 +12,18 @@ class Product {
   }
 }
 
+class ShoppingCart{
+  items=[];
+  render() {
+    const cartEl=document.createElement("section");
+    cartEl.innerHTML=`
+    <h2>Total: \$${0}</h2>
+    <button>Order Now!</button>
+    `;
+    cartEl.className='cart';
+    return cartEl;
+  }
+}
 
 class ProductItem {
   constructor(product) {    
@@ -41,7 +53,7 @@ class ProductItem {
         </div>
       `;
       const addCartButton=prodEl.querySelector('button');// bütün butonları seçmesin diye prodEl.query yaptık
-
+    
     addCartButton.addEventListener('click',this.addToCart.bind(this));
     return prodEl;
   }
@@ -52,7 +64,7 @@ class ProductList {
   products = [
     new Product(
       "pillow",
-      "https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg",
+      "img",
       "a soft pillow!",
       19.99
     ),
@@ -65,7 +77,7 @@ class ProductList {
   ];
   constructor() {}
   render() {
-    const renderHook = document.getElementById('app');
+    
     const prodList = document.createElement('ul');
     prodList.className = 'product-list';
     for (const prod of this.products) {
@@ -73,10 +85,24 @@ class ProductList {
       const prodEl = productItem.render();
       prodList.append(prodEl);
     }
-    renderHook.append(prodList);
+    return prodList;  
   }
 }
 
-const productList = new ProductList();
+class Shop{
+  render() {
+    const renderHook = document.getElementById('app');
 
-productList.render();
+    const cart = new ShoppingCart();
+    const cartEl= cart.render();
+    const productList = new ProductList();
+    const prodListEL=productList.render();
+
+    renderHook.append(cartEl);
+    renderHook.append(prodListEL);
+
+
+  }
+}
+const shop= new Shop();
+shop.render();
