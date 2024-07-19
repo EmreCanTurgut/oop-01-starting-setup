@@ -14,6 +14,12 @@ class Product {
 
 class ShoppingCart{
   items=[];
+
+  addProduct(product){
+    this.items.push(product);
+    this.totalOutput= `<h2>Total: \$${1}</h2>`
+  }
+
   render() {
     const cartEl=document.createElement("section");
     cartEl.innerHTML=`
@@ -21,6 +27,7 @@ class ShoppingCart{
     <button>Order Now!</button>
     `;
     cartEl.className='cart';
+    this.totalOutput=cartEl.querySelector('h2');
     return cartEl;
   }
 }
@@ -33,6 +40,7 @@ class ProductItem {
 
   addToCart(){
     console.log("Adding product ot the cart...");
+    ShoppingCart.addProduct();
     console.log(this);
     console.log(this.product);
   }
@@ -54,7 +62,7 @@ class ProductItem {
       `;
       const addCartButton=prodEl.querySelector('button');// bütün butonları seçmesin diye prodEl.query yaptık
     
-    addCartButton.addEventListener('click',this.addToCart.bind(this));
+    addCartButton.addEventListener('click',this.addToCart.bind(this)); //?
     return prodEl;
   }
 }
@@ -75,7 +83,7 @@ class ProductList {
       89.99
     ),
   ];
-  constructor() {}
+  constructor() {} //?
   render() {
     
     const prodList = document.createElement('ul');
@@ -101,8 +109,16 @@ class Shop{
     renderHook.append(cartEl);
     renderHook.append(prodListEL);
 
-
+    
   }
 }
-const shop= new Shop();
-shop.render();
+
+class App{
+
+ static init(){
+  const shop= new Shop();
+  shop.render();
+  }
+}
+
+App.init(); // init static oldugu için bu şekilde çalışıtrabiliryoruz
